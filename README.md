@@ -23,10 +23,11 @@ To run this project locally, you need to have Node.js and npm (Node Package Mana
 ```bash
 git clone https://github.com/MG-9205/MH_BLOGS.git
 cd mh-blog 
-
+```
 2. Install dependencies:
+```bash
  npm start
-
+```
 ## Usage
 
 Navigate to the MH BLOG website.
@@ -35,10 +36,12 @@ Create a new blog post by providing a title, content, category, and optional ima
 Publish your blog post to share it with others.
 Explore blogs from other users and engage with their content by commenting or liking.
 
-Contributing
+# Contributing
 Contributions to MH BLOG are welcome! If you have any ideas for new features, improvements, or bug fixes, feel free to open an issue or submit a pull request. Please adhere to the project's code of conduct.
 
-License
+# License
 This project is licensed under the MH BLOGS
+
+
 
 
