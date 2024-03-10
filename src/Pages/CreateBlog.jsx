@@ -1,6 +1,4 @@
 import { React, useState, useContext } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import { imageDb, db } from "../firebase/config";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import userContext from "../Context/userContext/userContext";
@@ -17,35 +15,51 @@ export default function CreateBlog() {
   const posthandle = async (e) => {
     e.preventDefault();
     setIsButtonDisabled(true);
+  
     if (userid.User == "") {
-      alert("It look like you are not login");
-    } else {
-      const timestamp = new Date().getTime();
-      const imgRef = ref(imageDb, `${imgFloder}/${timestamp}`);
-      try {
-        await uploadBytes(imgRef, Img);
-        const imgURL = await getDownloadURL(imgRef);
-        const currentDate = new Date();
-        const formattedDate = currentDate.toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-        });
-        const docRef = await addDoc(collection(db, "BLOG_DATA"), {
-          username: userid.User,
-          Title: title,
-          content: value,
-          Category: category,
-          url: imgURL,
-          date: formattedDate,
-        });
-        alert("Post uploaded successfully.");
-        setIsButtonDisabled(false);
-      } catch (e) {
-        alert("An unexecpted error occur please after a while");
-      }
+      alert("It looks like you are not logged in");
+      setIsButtonDisabled(false); 
+      return;
+    }
+  
+    if (value == "" || title =="" || Img == "" || category == "") {
+      alert("Please fill in all the required data");
+      setIsButtonDisabled(false); 
+      return;
+    }
+  
+    const timestamp = new Date().getTime();
+    const imgRef = ref(imageDb, `${imgFloder}/${timestamp}`);
+  
+    try {
+      await uploadBytes(imgRef, Img);
+      const imgURL = await getDownloadURL(imgRef);
+      const currentDate = new Date();
+      const formattedDate = currentDate.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      });
+      const docRef = await addDoc(collection(db, "BLOG_DATA"), {
+        username: userid.User,
+        Title: title,
+        content: value,
+        Category: category,
+        url: imgURL,
+        date: formattedDate,
+      });
+      alert("Post uploaded successfully.");
+      setTitle("");
+      setImg("");
+      setValue("");
+      setCategory("");
+    } catch (e) {
+      alert("An unexpected error occurred. Please try again later.");
+    } finally {
+      setIsButtonDisabled(false); 
     }
   };
+  
 
   return (
     <>
@@ -70,7 +84,7 @@ export default function CreateBlog() {
             />
           </div>
         </div>
-        {/* text editor*/}
+     
         <div className="h-[600px]  border-2 border-blue-500 md:py-0">
         <textarea 
     className="w-full h-full p-0 border-none resize-none outline-none text-[20px] px-2 py-2" 
@@ -126,7 +140,7 @@ export default function CreateBlog() {
         <div className="flex items-start mt-9 ml-4">
           <button
             disabled={isButtonDisabled}
-            className="border-2 border-blue-500 rounded-[10px] w-[130px]  text-[1.7rem] font-Satisfy bg-blue-500 text-white hover:border-white"
+            className="border-2 border-blue-500 rounded-[10px] w-[130px]  text-[1.7rem] font-Satisfy bg-blue-500 text-white hover:border-white cursor-pointer"
             onClick={(e) => posthandle(e)}
           >
             Post

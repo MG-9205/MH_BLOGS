@@ -1,18 +1,17 @@
-import React ,{useContext} from "react";
-import { Search,Linkedin,X,Github } from "lucide-react";
+import React, { useContext } from "react";
+import { Search, Linkedin, X, Github } from "lucide-react";
 import { Link } from "react-router-dom";
 import SmallCard from "./SmallCard";
 import NewsLetterBg from "../assets/image/NewsLetterBg.jpg";
 import sidebar1Context from "../Context/mhBlogContext";
 
 export default function Sidebar2() {
-  const  { setFilter }=useContext(sidebar1Context)
-  const handleme=(e)=>{
-     const category = e.target.textContent;
-     setFilter(category)
-     window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-  }
+  const { setFilter } = useContext(sidebar1Context);
+  const handleme = (e) => {
+    const category = e.target.textContent;
+    setFilter(category);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <>
       <div className="mb-10 pt-10 bg-slate-300 px-3">
@@ -34,26 +33,26 @@ export default function Sidebar2() {
           </div>
           <div className="">
             <ul className="flex flex-col gap-4 items-start px-4 mt-4 text-[1.3rem] font-Montserrat font-medium text-gray-800">
-            <li className="border-b-[1px] border-b-gray-400 w-full text-left pl-2 pb-3" >
-                <Link onClick={(e)=>handleme(e)}>ALL</Link>
+              <li className="border-b-[1px] border-b-gray-400 w-full text-left pl-2 pb-3">
+                <Link onClick={(e) => handleme(e)}>ALL</Link>
               </li>
               <li className="border-b-[1px] border-b-gray-400 w-full text-left pl-2 pb-3">
-                <Link onClick={(e)=>handleme(e)}>Fashion</Link>
+                <Link onClick={(e) => handleme(e)}>Fashion</Link>
               </li>
               <li className="border-b-[1px] border-b-gray-400 w-full text-left pl-2 py-2">
-                <Link onClick={(e)=>handleme(e)}>Sports</Link>
+                <Link onClick={(e) => handleme(e)}>Sports</Link>
               </li>
               <li className="border-b-[1px] border-b-gray-400 w-full text-left pl-2 py-2 ">
-                <Link onClick={(e)=>handleme(e)}>Technology</Link>
+                <Link onClick={(e) => handleme(e)}>Technology</Link>
               </li>
               <li className="border-b-[1px] border-b-gray-400 w-full text-left pl-2 py-2">
-                <Link onClick={(e)=>handleme(e)}>Food</Link>
+                <Link onClick={(e) => handleme(e)}>Food</Link>
               </li>
               <li className="border-b-[1px] border-b-gray-400 w-full text-left pl-2 py-2">
-                <Link onClick={(e)=>handleme(e)}>Travel</Link>
+                <Link onClick={(e) => handleme(e)}>Travel</Link>
               </li>
               <li className="border-b-[1px] border-b-gray-400 w-full text-left pl-2 py-2">
-                <Link onClick={(e)=>handleme(e)}>literature</Link>
+                <Link onClick={(e) => handleme(e)}>literature</Link>
               </li>
             </ul>
           </div>
@@ -101,14 +100,21 @@ export default function Sidebar2() {
           perspectives collide to spark new understandings, and where knowledge
           thrives in the shared experiences of our diverse community.
         </div>
-        <div className='flex flex-col justify-center items-center gap-5'>
-          <div className='font-Montserrat text-[2rem] text-left  font-medium'>
+        <div className="flex flex-col justify-center items-center gap-5">
+          <div className="font-Montserrat text-[2rem] text-left  font-medium">
             Connect With Me!!
           </div>
-          <div className='flex justify-center items-center gap-5'>
-          <a href="https://www.linkedin.com/in/manishgupta31" target='_blank'><Linkedin className='h-10 w-10 text-blue-500'/></a> 
-          <a href="https://github.com/MG-9205" target='_blank'><Github className='h-10 w-10 text-blue-500' /></a>
-          <a href="https://twitter.com/Manish_Gupta31" target='_blank'><X className='h-10 w-10 text-blue-500' /></a></div>
+          <div className="flex justify-center items-center gap-5">
+            <a href="https://www.linkedin.com/in/manishgupta31" target="_blank">
+              <Linkedin className="h-10 w-10 text-blue-500" />
+            </a>
+            <a href="https://github.com/MG-9205" target="_blank">
+              <Github className="h-10 w-10 text-blue-500" />
+            </a>
+            <a href="https://twitter.com/Manish_Gupta31" target="_blank">
+              <X className="h-10 w-10 text-blue-500" />
+            </a>
+          </div>
         </div>
       </div>
     </>

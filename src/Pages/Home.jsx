@@ -29,15 +29,13 @@ export default function Home() {
           });
           setBlogs(fetchedBlogs);
         } else {
-         
           const q = query(DB_REF, where("Category", "==", Filter));
-            const querySnapshot = await getDocs(q);
-            const fetchedBlogs = [];
-            querySnapshot.forEach((doc) => {
-              fetchedBlogs.push(doc.data());
-            });
-            setBlogs(fetchedBlogs);
-          
+          const querySnapshot = await getDocs(q);
+          const fetchedBlogs = [];
+          querySnapshot.forEach((doc) => {
+            fetchedBlogs.push(doc.data());
+          });
+          setBlogs(fetchedBlogs);
         }
       } catch (error) {
         console.error("Error fetching blogs:", error);

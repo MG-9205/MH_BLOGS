@@ -1,6 +1,6 @@
 import React from "react";
-import { Link,useNavigate } from "react-router-dom";
-import { useContext,useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import LoginContext from "../Context/LoginContext/LoginContext";
 import UserContext from "../Context/userContext/userContext";
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -8,14 +8,14 @@ import auth from "../firebase/config";
 
 export default function Signup() {
   const active = useContext(LoginContext);
-  const User=useContext(UserContext)
-  const [error ,setError]=useState('')
-  const Navigate=useNavigate();
+  const User = useContext(UserContext);
+  const [error, setError] = useState("");
+  const Navigate = useNavigate();
   const switchToSignin = () => {
     active.Controller("Login");
   };
   function handleCerdentails(e) {
-    setError('')
+    setError("");
     active.setUserCredentials({
       ...active.userCredentials,
       [e.target.name]: [e.target.value],
@@ -30,13 +30,11 @@ export default function Signup() {
       .then((userCredential) => {
         console.log(active.userCredentials.email);
         const user = userCredential.user;
-        User.SetUser(user.uid)
-        Navigate("/")
-        
+        User.SetUser(user.uid);
+        Navigate("/");
       })
       .catch((error) => {
-        setError('please Enter Valid Email Id')
-   
+        setError("please Enter Valid Email Id");
       });
   }
   return (
@@ -76,9 +74,7 @@ export default function Signup() {
             className="w-full h-12 outline-none border border-solid border-gray-300 rounded-lg px-4 transition duration-200 ease-in-out mb-5 focus:border-blue-400"
           />
         </div>
-        <div className='text-red-600 text-[15px]'>
-              {error&&error}
-            </div>
+        <div className="text-red-600 text-[15px]">{error && error}</div>
         <button
           onClick={(e) => {
             handleSignup(e);

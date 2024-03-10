@@ -2,21 +2,21 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoginContext from "../Context/LoginContext/LoginContext";
 import UserContext from "../Context/userContext/userContext";
-import { useContext,useState } from "react";
+import { useContext, useState } from "react";
 import Signup from "./Signup";
 import auth from "../firebase/config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function Login() {
   const active = useContext(LoginContext);
-  const User=useContext(UserContext)
-  const [error ,setError]=useState('')
-  const Navigate=useNavigate();
+  const User = useContext(UserContext);
+  const [error, setError] = useState("");
+  const Navigate = useNavigate();
   const switchToSignup = () => {
     active.Controller("Signup");
   };
   function handleCerdentails(e) {
-    setError('')
+    setError("");
     active.setUserCredentials({
       ...active.userCredentials,
       [e.target.name]: [e.target.value],
@@ -27,23 +27,23 @@ export default function Login() {
     e.preventDefault();
     const email = active.userCredentials.email[0];
     const password = active.userCredentials.password[0];
-   
+
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        if (email && email.includes('@')) {
-          const username = email.split('@')[0];
+        if (email && email.includes("@")) {
+          const username = email.split("@")[0];
           User.SetUser(username);
           Navigate("/");
         } else {
           // Handle invalid email format
-          setError('Invalid email format');
+          setError("Invalid email format");
         }
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        setError('Please Enter the Correct Credentials')
+        setError("Please Enter the Correct Credentials");
       });
   }
   return (
@@ -85,9 +85,7 @@ export default function Login() {
                 className="w-full h-12 outline-none border border-solid border-gray-300 rounded-lg px-4 transition duration-200 ease-in-out mb-5 focus:border-blue-400"
               />
             </div>
-            <div className='text-red-600 text-[15px]'>
-              {error&&error}
-            </div>
+            <div className="text-red-600 text-[15px]">{error && error}</div>
             <button
               type="submit"
               onClick={(e) => {
