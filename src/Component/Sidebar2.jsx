@@ -67,7 +67,7 @@ export default function Sidebar2() {
         </div>
         <div className="flex justify-center items-center mt-10">
           <div
-            className=" bg-center h-[40vh] w-[95vw] md:h-[300px] md:w-[470px]"
+            className=" bg-center h-[40vh] w-[95vw] md:h-[380px] md:w-[470px]"
             style={{ backgroundImage: `url(${NewsLetterBg})` }}
           >
             <div className="text-left text-white text-[2rem] font-Satisfy py-2 px-3 font-semibold">
