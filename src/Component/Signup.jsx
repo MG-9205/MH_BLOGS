@@ -28,10 +28,16 @@ export default function Signup() {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(active.userCredentials.email);
+        
         const user = userCredential.user;
-        User.SetUser(user.uid);
-        Navigate("/");
+        if (email && email.includes("@")) {
+          const username = email.split("@")[0];
+          User.SetUser(username);
+          Navigate("/");
+        } else {
+          // Handle invalid email format
+          setError("Invalid email format");
+        }
       })
       .catch((error) => {
         setError("please Enter Valid Email Id");
