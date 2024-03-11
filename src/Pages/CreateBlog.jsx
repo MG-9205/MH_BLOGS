@@ -15,22 +15,22 @@ export default function CreateBlog() {
   const posthandle = async (e) => {
     e.preventDefault();
     setIsButtonDisabled(true);
-  
+
     if (userid.User == "") {
       alert("It looks like you are not logged in");
-      setIsButtonDisabled(false); 
+      setIsButtonDisabled(false);
       return;
     }
-  
-    if (value == "" || title =="" || Img == "" || category == "") {
+
+    if (value == "" || title == "" || Img == "" || category == "") {
       alert("Please fill in all the required data");
-      setIsButtonDisabled(false); 
+      setIsButtonDisabled(false);
       return;
     }
-  
+
     const timestamp = new Date().getTime();
     const imgRef = ref(imageDb, `${imgFloder}/${timestamp}`);
-  
+
     try {
       await uploadBytes(imgRef, Img);
       const imgURL = await getDownloadURL(imgRef);
@@ -56,10 +56,9 @@ export default function CreateBlog() {
     } catch (e) {
       alert("An unexpected error occurred. Please try again later.");
     } finally {
-      setIsButtonDisabled(false); 
+      setIsButtonDisabled(false);
     }
   };
-  
 
   return (
     <>
@@ -71,7 +70,7 @@ export default function CreateBlog() {
           <div className="text-[1.5rem] font-Montserrat ">
             Enter the title here
           </div>
-          <div className="border-2 border-blue-400 w-[100%]">
+          <div className="border-2 border-blue-400 w-[95%]">
             <input
               type="text"
               name="Title"
@@ -84,18 +83,18 @@ export default function CreateBlog() {
             />
           </div>
         </div>
-     
-        <div className="h-[600px]  border-2 border-blue-500 md:py-0">
-        <textarea 
-    className="w-full h-full p-0 border-none resize-none outline-none text-[20px] px-2 py-2" 
-    name="content" 
-    id="content" 
-    value={value} 
-    onChange={(e) => setValue(e.target.value)} 
-    rows="10" 
-    placeholder="Enter your content here" 
-    required
-  ></textarea>
+
+        <div className="h-[600px] border-2 border-blue-500 md:py-0">
+          <textarea
+            className="w-[92%] h-full p-0 border-none resize-none outline-none text-[20px] px-2 py-2"
+            name="content"
+            id="content"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            rows="10"
+            placeholder="Enter your content here"
+            required
+          ></textarea>
         </div>
 
         <div className="flex flex-col gap-5 px-0 md:px-3 my-5">
@@ -111,7 +110,9 @@ export default function CreateBlog() {
                 id=""
                 className="border-2 border-blue-400 text-[1.1rem] outline-none font-Montserrat"
               >
-                <option value="Fashion" defaultChecked>Fashion</option>
+                <option value="Fashion" defaultChecked>
+                  Fashion
+                </option>
                 <option value="Sports">Sports</option>
                 <option value="Technology">Technology</option>
                 <option value="Food">Food</option>

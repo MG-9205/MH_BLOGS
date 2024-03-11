@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import SmallCard from "./SmallCard";
 import NewsLetterBg from "../assets/image/NewsLetterBg.jpg";
 import sidebar1Context from "../Context/mhBlogContext";
+import p1 from '../assets/image/p1.webp';
+import p2 from '../assets/image/p2.webp';
+import p3 from "../assets/image/NewsLetterBg.jpg"
 
 export default function Sidebar2() {
   const { setFilter } = useContext(sidebar1Context);
@@ -12,6 +15,20 @@ export default function Sidebar2() {
     setFilter(category);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  const smallimg=[
+    {
+      "image":p3,
+      "Content":"Even the all-powerful Pointing has no control"
+    },
+    {
+      "image":p1,
+      "Content":"How to Cook Gyoza"
+    },
+    {
+      "image":p2,
+      "Content":"No more takeout! Make this easy lo mein at "
+    }
+  ]
   return (
     <>
       <div className="mb-10 pt-10 bg-slate-300 px-3">
@@ -61,13 +78,15 @@ export default function Sidebar2() {
           <div className="font-Satisfy text-left pl-6 text-[2rem]">
             Popular Articles
           </div>
-          <SmallCard />
-          <SmallCard />
-          <SmallCard />
+         {
+          smallimg.map((item,index)=>
+            <SmallCard image={item.image} discription={item.Content} index={index}/>
+          )
+         }
         </div>
         <div className="flex justify-center items-center mt-10">
           <div
-            className=" bg-center h-[48vh] w-[95vw] md:h-[300px] md:w-[470px]"
+            className=" bg-center h-fit w-[95vw] md:h-fit md:w-[470px] py-4"
             style={{ backgroundImage: `url(${NewsLetterBg})` }}
           >
             <div className="text-left text-white text-[2rem] font-Satisfy py-2 px-3 font-semibold">
