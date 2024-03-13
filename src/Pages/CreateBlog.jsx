@@ -62,11 +62,11 @@ export default function CreateBlog() {
 
   return (
     <>
-      <div className=" pt-5 pb-8 w-[95%] m-auto">
+      <div className=" pt-5 pb-8 w-[95%] m-auto flex flex-col justify-center items-center">
         <div className="text-center text-[2rem] font-Satisfy text-blue-500 ">
           Create Your New Blog
         </div>
-        <div className="flex flex-col items-center gap-2 my-2">
+        <div className="flex flex-col items-center gap-2 my-2 w-[92%]">
           <div className="text-[1.5rem] font-Montserrat ">
             Enter the title here
           </div>
@@ -84,9 +84,9 @@ export default function CreateBlog() {
           </div>
         </div>
 
-        <div className="h-[600px] border-2 border-blue-500 md:py-0">
+        <div className="h-[600px] border-2 border-blue-500 md:py-0 w-[92%]">
           <textarea
-            className="w-[92%] h-full p-0 border-none resize-none outline-none text-[20px] px-2 py-2"
+            className="w-[100%] h-full p-0 border-none resize-none outline-none text-[20px] px-2 py-2"
             name="content"
             id="content"
             value={value}
